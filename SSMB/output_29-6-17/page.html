@@ -1,0 +1,265 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Xcelerator</title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <script src="jquery-2.1.1.min.js"></script>
+        <script src="data.js" type="text/javascript"></script>
+		<style>
+            @font-face {font-family: 'if';src:url('if.woff?-a8wubt') format('woff');font-weight: normal;font-style: normal;}
+            body { font-size: 0.8em; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; margin-top: 0px; margin-left: 0px; margin-right: 0px; backgroud: #eef;}
+            .menu-header { width: 100%; background: #3b78e7; display: table; position: fixed; top: 0px; z-index: 1000;}
+            #left-container, #logo, #right-container {display: table-cell;}
+            #left-container, #right-container {width: 40px;}
+            .logo       { font-size: 20px; font-style: italic; font-weight: bold;  display: inline-block; text-align: center; color: #fff; padding: 10px;}
+            .nav-left   { width: 30px; border: 0px solid #fff; display: inline-block;}
+            .nav-right  { width: 30px; border: 0px solid #fff; display: inline-block;}
+
+            .inpDiv { font-size: 0.8em; padding-top: 70px;}
+            .outDiv { font-size: 0.8em; padding-top: 70px;}
+            .tblinp { width: 95%; border-collapse: collapse;}
+            .tblinp td { padding: 8px 8px 8px 3px; font-size: 0.8em; border-bottom: thin solid #aaa;}
+            .tblinp tr td:first-child { font-weight: bold; border-bottom: 0px;}
+			.tblinp td span { width: 100%; display: inline-block;}
+            .tblout { line-height: 1.2em;}
+            .tblout td { padding: 3px 8px 3px 3px; font-size: 0.8em;}
+
+			.trow {display: table-row;}
+            .outcell {width: 95%; display: inline-block;}
+
+            .align0, .align1 { text-align: left; }   /* general, left */
+            .align2 { text-align: center; }         /* center */
+            .align3 { text-align: right; }          /* right */
+            .align4, .align5, .align6 { text-align: justify; }  /* justify */
+			.fbold { font-weight: 700;}
+			.fitalic {font-style: italic;}
+			.funderline {text-decoration: underline;}
+
+            .valign0 { vertical-align: text-top; }   /* top */
+            .valign1 { vertical-align: middle; }     /* center */
+            .valign2, .valign3 { vertical-align: text-bottom; }/* bottom justify */
+
+            .gicon {font-family: 'if'; -webkit-font-smoothing: antialiased; padding: 8px 6px 0px 3px; color: #eef;}
+            .gicon-prev:before		{ content: "\e638"; font-size: 1.4em;}
+            .gicon-next:before		{ content: "\e639"; font-size: 1.4em;}
+
+            input[type="text"], input[type="date"]              { width: 95%; border: 0px;  margin: 2px; padding: 3px;}
+            input[type="text"]:focus, input[type="date"]:focus  { border: 1px solid #88f; margin: 0px; padding: 3px;}
+			input[type="radio"]  { display: block;}
+
+
+            .datepicker-container { position: absolute; z-index: 201312; float: left; font-family: arial, helvetica, sans-serif; font-size: 12px; line-height: 30px; }
+            .datepicker-arrow, .datepicker-arrow:after { display: block; width: 0; height: 0; border: 5px solid transparent; }
+            .datepicker-arrow { position: relative; margin: 0 10px; border-bottom-color: #9cf; }
+            .datepicker-arrow:after { position: absolute; top: -4px; left: -5px; content: " "; border-bottom-color: #fff;}
+            .datepicker-content { width: 210px; -webkit-box-sizing: content-box; box-sizing: content-box; border: 1px solid #ccc; border-top-color: #9cf; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;  padding-left: 10px; background-color:grey;}
+            .datepicker-prev, .datepicker-next { font-size: 18px; }
+            .datepicker-content ul:before,.datepicker-content ul:after {display: table;content: "";}
+            .datepicker-content ul:after {clear: both;}
+            .datepicker-content ul {width: 102%;padding: 0;margin: 0; *zoom: 1;}
+            .datepicker-content li {float: left;width: 30px;height: 30px;padding: 0;margin: 0;text-align: center;list-style: none;cursor: pointer;background-color: #fff;}
+            .datepicker-content .col-1 {width: 30px;}
+            .datepicker-content .col-2 {width: 60px;}
+            .datepicker-content .col-3 {width: 90px;}
+            .datepicker-content .col-4 {width: 120px;}
+            .datepicker-content .col-5 {width: 150px;}
+            .datepicker-content .col-6 {width: 180px;}
+            .datepicker-content .col-7 {width: 210px;}
+            .datepicker-content li:hover {background-color: #48f; color: #fff;}
+            .datepicker-content .selected,.datepicker-content .selected:hover {color: #f61;}
+            .datepicker-content .disabled,.datepicker-content .disabled:hover {color: #ccc;}
+            .datepicker-years li,.datepicker-months li {width: 52.5px;height: 52.5px;line-height: 52.5px;}
+            .datepicker-week li,.datepicker-week li:hover {cursor: default;background-color: #fff; color: #000;}
+
+		</style>
+    </head>
+<body>
+    <div class="menu-header">
+        <div id="left-container"><span class="gicon gicon-prev nav-left" id="nav-left"></span></div>
+        <div class="logo" id="logo">Xcelerator</div>
+        <div id="right-container"><span class="gicon gicon-next nav-right" id="nav-right"></span></div>
+    </div>
+    <div class="inpDiv" id="inpDiv">
+        <table class='tblinp'>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align0 valign1 fbold' style='font-size: 11pt;'>Enter the details in Cells coloured Green</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align0 valign2 fbold' style='font-size: 11pt;'>Output is in cells coloured Pink</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='4'><span class='align0 valign1 fbold' style='font-size: 10pt;'>Inputs in Green Cell</span></td>
+    <td colspan='3'><span class='align2 valign2' style='font-size: 11pt;'>Premium Input for Reverse Calculator</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Date of Illustration: </span></td>
+    <td colspan='3'><input type='hidden' value='42046.0' id='0_4_2'><input type='text' value='' id='dt-0-4-2' class='align3 valign1' style='font-size: 11pt;'></td>
+    <td colspan='1'><span id='0_4_5' class='align2 valign0 outcell' style='font-size: 11pt;' >Orig. Installment Premium (Rs.) EXCLUDING Service Tax for Year 1: </span></td>
+    <td colspan='2'><input type='text' value='40000' id='0_4_8' class='align2 valign1' style='font-size: 11pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1' style='font-size: 10pt;'>Age Last Birthday as on Date of Commencement</span></td>
+    <td colspan='6'><input type='text' value='40' id='0_5_2' class='align3 valign2' style='font-size: 11pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Gender: </span></td>
+    <td colspan='3'><select id='0_6_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='MALE'  selected >MALE</option><option value=' FEMALE' > FEMALE</option></select></td>
+    <td colspan='3'><span class='align2 valign2' style='font-size: 11pt;'>Output of reverse calculator</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Policy Term</span></td>
+    <td colspan='3'><select id='0_7_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='15'  selected >15</option></select></td>
+    <td colspan='1'><span class='align1 valign1' style='font-size: 11pt;'>SA Out put for Reverse Calculator</span></td>
+    <td colspan='1'><span id='0_7_8' class='align3 valign2 outcell' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>4245338</span></td>
+    <td colspan='1'><span id='0_7_9' class='align1 valign2 outcell' style='font-size: 11pt;' ></span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Premium Term</span></td>
+    <td colspan='6'><select id='0_8_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='11'  selected >11</option></select></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Sum Assured</span></td>
+    <td colspan='6'><span id='0_9_2' class='align3 valign2 outcell' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>4245338</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Premium Frequency</span></td>
+    <td colspan='6'><select id='0_10_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='1' >1</option><option value='12'  selected >12</option></select></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign1' style='font-size: 11pt;'>MMR</span></td>
+    <td colspan='1'><select id='0_11_2' class='align3 valign1' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+    <td colspan='1'><input type='text' value='0' id='0_11_3' class='align3 valign1' style='font-size: 11pt;'></td>
+    <td colspan='4'><span class='align1 valign1 fbold' style='font-size: 10pt;'>As per our understanding from underwriting team, MMR is no longer used and hence should always assume the value 0 here.</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Flat Extra</span></td>
+    <td colspan='1'><select id='0_12_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes'  selected >Yes</option><option value='No' >No</option></select></td>
+    <td colspan='5'><input type='text' value='1' id='0_12_3' class='align3 valign2' style='font-size: 11pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>EMR</span></td>
+    <td colspan='1'><select id='0_13_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes'  selected >Yes</option><option value='No' >No</option></select></td>
+    <td colspan='5'><input type='text' value='100.00%' id='0_13_3' class='align3 valign2' style='font-size: 11pt;' data-fmt='0.00%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Staff</span></td>
+    <td colspan='1'><select id='0_14_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+    <td colspan='5'><input type='text' value='11.75%' id='0_14_3' class='align3 valign2' style='font-size: 11pt;' data-fmt='0.00%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>NSAP Extra</span></td>
+    <td colspan='1'><select id='0_15_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes'  selected >Yes</option><option value='No' >No</option></select></td>
+    <td colspan='5'><input type='text' value='2' id='0_15_3' class='align3 valign2' style='font-size: 11pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 11pt;'>Worksite Group / Online Discount</span></td>
+    <td colspan='1'><select id='0_16_2' class='align3 valign2' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'><option value='Yes'  selected >Yes</option><option value='No' >No</option></select></td>
+    <td colspan='5'><input type='text' value='3.50%' id='0_16_3' class='align3 valign2' style='font-size: 11pt;' data-fmt='0.00%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Orig. Installment Premium &quot;Including&quot; Service Tax ( Cell F4)</span></td>
+    <td colspan='3'><select id='0_17_2' class='align3 valign1' style='font-size: 10pt;' ><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+    <td colspan='3'><span class='align1 valign1 fbold funderline' style='font-size: 8pt;'>Note:</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='4'>&nbsp;</td>
+    <td colspan='3'><span class='align1 valign1 fbold' style='font-size: 12pt;'>Reverse Calculator will not work for Staff Cases</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='4'>&nbsp;</td>
+    <td colspan='3'><span class='align1 valign1 fbold' style='font-size: 12pt;'>If the Service Tax depicted here is different from the actual, get the Reverse Calculator updated from Actuarial Team.</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign0' style='font-size: 11pt;'>Check for Premium basis Premium Calculator</span></td>
+    <td colspan='6'><span id='0_20_2' class='align2 valign1 outcell' style='font-size: 11pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>40000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Year </span></td>
+    <td colspan='6'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Service Tax and applicable Cess</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1' style='font-size: 10pt;'>Year 1</span></td>
+    <td colspan='6'><input type='text' value='4.500%' id='0_23_2' class='align2 valign1' style='font-size: 10pt;' data-fmt='0.000%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1' style='font-size: 10pt;'>Other Years</span></td>
+    <td colspan='6'><input type='text' value='2.250%' id='0_24_2' class='align2 valign1' style='font-size: 10pt;' data-fmt='0.000%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'>&nbsp;</td>
+    <td colspan='1'><span id='0_26_2' class='align3 valign2 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>0</span></td>
+    <td colspan='5'><span class='align1 valign1 fbold' style='font-size: 10pt;'>If Cell D33 is greater than 1 wrt rounding of values, please connect with the Pricing Team</span></td>
+</tr>
+</table>
+    </div>
+	
+	<div class="outDiv" id="outDiv">
+        {outputTable}
+	</div>
+
+
+
+</body>
+</html>
+
+<script type='text/javascript'>
+    var isheet=0, osheet=0;
+
+    (function(){
+        $('#nav-left').hide();
+        $('#outDiv').hide();
+        if( isheet == osheet ){
+            $('#nav-right').hide();
+        }
+
+        $('*:input[type!=hidden]:first').focus();
+
+        $('#nav-right').click(function(e){
+            e.preventDefault();
+            $('#nav-left').show();
+            $('#nav-right').hide();
+            $('#inpDiv').hide(300);
+            $('#outDiv').show(300);
+            window.scrollTo(0,0);
+        });
+        $('#nav-left').click(function(e){
+            e.preventDefault();
+            $('#nav-left').hide();
+            $('#nav-right').show();
+            $('#inpDiv').show(300);
+            $('#outDiv').hide(300);
+            window.scrollTo(0,0);
+        });
+        $('[id^=dt-]').datepicker();
+        $('[id^=dt-]').change(function(e){
+            e.preventDefault();
+            var parts = this.id.split('-');
+            if( parts.length!=4)return;
+            var id = parts[1]+'_'+parts[2]+'_'+parts[3];
+            $('#'+id).val((new Date(this.value)).getTime());
+            data[id] = new Date(this.value);
+            xl2g.evalAllTargets();
+			//xl2g.onInputChange(document.getElementById(id));
+        });
+        $('[id^=chk-]').change(function(e){
+            e.preventDefault();
+            var parts = this.id.split('-');
+            if( parts.length!=3)return;
+			var value = this.checked ? this.value : '';
+            //console.log(parts);
+            //console.log(value);
+			data[parts[2]] =value;
+			var chks = document.getElementsByName(this.name);
+			for( var i=0; i<chks.length; i++){
+				if( chks[i].type=="checkbox" && chks[i].id != this.id)chks[i].checked = false;
+			}
+            xl2g.evalAllTargets();
+			
+        });
+
+        createXl2g();
+		
+		xl2g.afterRadioChange = function(elem){
+			
+		}
+    })();
+</script>

@@ -1,0 +1,152 @@
+/* Common  Styles */
+
+*, *:after, *:before { -webkit-box-sizing: border-box !important; -moz-box-sizing: border-box !important;  
+	-ms-box-sizing: border-box !important; -o-box-sizing: border-box !important; box-sizing: border-box !important;
+	-webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;
+	box-shadow: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; -moz-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+	-ms-tap-highlight-color: rgba(255, 255, 255, 0) !important;  -o-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+	tap-highlight-color: rgba(255, 255, 255, 0) !important; -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+	-moz-focus-ring-color: rgba(255, 255, 255, 0) !important; -ms-focus-ring-color: rgba(255, 255, 255, 0) !important;
+	 -o-focus-ring-color: rgba(255, 255, 255, 0) !important; focus-ring-color: rgba(255, 255, 255, 0) !important;
+}
+body { display: none; }
+body.show { display: block; }
+body, p { margin: 0; }
+html { overflow: auto; }
+a, a:active,a:focus,a:hover { text-decoration: none !important; outline: 0 !important; }
+
+/* Fonts */
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/robotoregular/roboto-regular1-webfont.eot');
+    src: url('fonts/robotoregular/roboto-regular1-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/robotoregular/roboto-regular1-webfont.woff2') format('woff2'),
+         url('fonts/robotoregular/roboto-regular1-webfont.woff') format('woff'),
+         url('fonts/robotoregular/roboto-regular1-webfont.ttf') format('truetype'),
+         url('fonts/robotoregular/roboto-regular1-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('fonts/robotobold/roboto-bold-webfont.eot');
+    src: url('fonts/robotobold/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/robotobold/roboto-bold-webfont.woff2') format('woff2'),
+         url('fonts/robotobold/roboto-bold-webfont.woff') format('woff'),
+         url('fonts/robotobold/roboto-bold-webfont.ttf') format('truetype'),
+         url('fonts/robotobold/roboto-bold-webfont.svg#robotobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Datepicker */
+
+.datepicker-container { position: absolute; z-index: 201312; float: left; font-family: arial, helvetica, sans-serif; font-size: 12px; line-height: 30px; }
+.datepicker-arrow, .datepicker-arrow:after { display: block; width: 0; height: 0; border: 5px solid transparent; }
+.datepicker-arrow { position: relative; margin: 0 10px; border-bottom-color: #9cf; }
+.datepicker-arrow:after { position: absolute; top: -4px; left: -5px; content: " "; border-bottom-color: #fff;}
+.datepicker-content { width: 210px; -webkit-box-sizing: content-box; box-sizing: content-box; border: 1px solid #ccc; border-top-color: #9cf; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;  padding-left: 2px; background-color:grey;}
+.datepicker-prev, .datepicker-next { font-size: 18px; }
+.datepicker-content ul:before,.datepicker-content ul:after {display: table;content: "";}
+.datepicker-content ul:after {clear: both;}
+.datepicker-content ul {width: 102%;padding: 0;margin: 0; *zoom: 1;}
+.datepicker-content li {float: left;width: 30px;height: 30px;padding: 0;margin: 0;text-align: center;list-style: none;cursor: pointer;background-color: #fff;}
+.datepicker-content .col-1 {width: 30px;}
+.datepicker-content .col-2 {width: 60px;}
+.datepicker-content .col-3 {width: 90px;}
+.datepicker-content .col-4 {width: 120px;}
+.datepicker-content .col-5 {width: 150px;}
+.datepicker-content .col-6 {width: 180px;}
+.datepicker-content .col-7 {width: 210px;}
+.datepicker-content li:hover {background-color: #48f; color: #fff;}
+.datepicker-content .selected,.datepicker-content .selected:hover {color: #f61;}
+.datepicker-content .disabled,.datepicker-content .disabled:hover {color: #ccc;}
+.datepicker-years li,.datepicker-months li {width: 52.5px;height: 52.5px;line-height: 52.5px;}
+.datepicker-week li,.datepicker-week li:hover {cursor: default;background-color: #fff; color: #000;}
+
+#header p { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+#header p, .home_links a, #footer p { text-align: center; }
+
+/* Header */
+
+#header, #footer { display: inline-block; width: 100%; position: fixed; top: 0; left: 0; width: 100%; z-index: 10; 
+	background: linear-gradient(#F38176, #E52D1C); background: -webkit-linear-gradient(#F38176, #E52D1C);
+	background: -ms-linear-gradient(#F38176, #E52D1C); background: -moz-linear-gradient(#F38176, #E52D1C);
+	background: -o-linear-gradient(#F38176, #E52D1C); 
+}
+#header a { position: absolute; left: 0; top: 0; padding: 0 10px; }
+#header a img { max-width: 34px; margin: 5px 0 0 0; }
+#footer { bottom: 0; top: auto; }
+#header p, #footer p { padding: 10px 15px; font: 16px/26px robotobold; color: #fff; }
+p#version { position: fixed; bottom: 0; padding: 10px 15px; left: 0; width: 100%; z-index: 1000; background-color: #fff; color: #000;
+	font: 16px/20px robotoregular; text-align: right;
+}
+
+/* Content */
+
+.content { margin: 48px 0; padding: 20px 15px; }
+#index .content { margin: 15px 0; padding: 0 15px; }
+#index .content { margin: 15px 0; }
+.home_links { text-align: center; }
+.home_links a { display: inline-block; width: 100%; padding: 10px 15px; margin-bottom: 10px; margin-right: 10px; color: #000; 
+	background: linear-gradient(#3A94B7, #8AD5F0, #018CC2); background: -webkit-linear-gradient(#3A94B7, #8AD5F0, #018CC2);
+	background: -ms-linear-gradient(#3A94B7, #8AD5F0, #018CC2); background: -moz-linear-gradient(#3A94B7, #8AD5F0, #018CC2);
+	background: -o-linear-gradient(#3A94B7, #8AD5F0, #018CC2);
+	font: 15px/20px robotoregular; 
+}
+body.web .home_links a { width: auto; }
+.f_row.hidden { display: none; }
+.blk, .table { border: 1px solid #04A0DC; border-radius: 6px; padding: 20px 10px; background-color: #E6F7FE; }
+#input_blk .f_row .f_lbl { padding: 5px 10px 0px 0px; }
+#output_blk, .btn_row, .table { display: none; }
+.f_row { display: inline-block; width: 100%; margin: 0 0 15px 0; }
+.f_row > div { width: 100% !important; border-radius: 0 !important; }
+#output_blk > div:last-child, .table .tbl_cont > div:last-child, #input_blk .f_row:last-child { margin: 0; }
+.f_lbl p { font: 16px/20px robotoregular; color: #239FCD; }
+/*input, */select { background-color: transparent; border: none !important; border-bottom: 1px solid #cacaca !important; width: 100% !important; 
+	font: 16px/20px robotoregular; color: #333; padding: 10px 10px 5px 0 !important; border-radius: 0 !important;
+	outline: 0 !important;
+}
+select option { padding: 0 10px; }
+input { background-color: transparent; border: none !important; border-bottom: 1px solid #cacaca !important; width: 100%; 
+	font: 16px/20px robotoregular; color: #333; border-radius: 0 !important; outline: 0 !important;
+	padding-top: 10px; padding-bottom: 5px; 
+}
+select { -webkit-appearance: textfield !important; }
+.f_val span { font: 16px/20px robotoregular; color: #333; }
+input:active, select:active, input:focus, select:focus { outline: 0; }
+.logo { margin: 61px 0 0px 0; text-align: center; }
+.logo img { max-width: 210px; }
+
+span.errMsg { display: none; }
+
+.btn_row { margin: 10px 0; }
+.btn_row button { background: linear-gradient(#F38176, #E52D1C); background: -webkit-linear-gradient(#F38176, #E52D1C);
+	background: -ms-linear-gradient(#F38176, #E52D1C); background: -moz-linear-gradient(#F38176, #E52D1C); 
+	background: -o-linear-gradient(#F38176, #E52D1C); border: none; padding: 10px 25px;
+	border-radius: 6px; color: #fff; font: 16px/20px robotoregular; 
+}
+button:active, button:focus { outline: 0; }
+
+.table { margin: 10px 0; }
+.table h3, table thead th { font: 17px/20px robotoregular; margin: 5px 0 15px 0; }
+table tr td { font: 16px/20px robotoregular; color: #239FCD; }
+table { border-collapse: collapse; border-radius: 6px; margin: 10px 0; display: none; }
+table thead th, table tr td { border: 1px solid #04A0DC; padding: 5px; text-align: center; color: #000; }
+table thead th:first-child, table tr td:first-child { text-align: left; color: #239FCD; }
+table thead th { color: #239FCD; }
+
+
+/* Media Queries */
+
+@media (min-width: 768px) {
+	.blk, .btn_row, .table, table { max-width: 767px; margin: 15px auto; }
+	.f_row > div { width: 50% !important; float: left; }
+	.f_lbl p { margin-top: 2px; }
+	
+	#header p, #footer p { font-size: 20px; }
+	.home_links a { font-size: 16px; }
+}

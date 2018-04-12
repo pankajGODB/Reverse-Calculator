@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Reverse Calculator - Smart Monthly Income Plan</title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/data-smip.js"></script>
+        <script src="js/smip.js"></script>
+		<script src="js/common.js"></script>
+    </head>
+<body onload="onLoad();">
+	<div id="header">
+		<a href="#" onclick="onBackKeyDown()"><img src="images/back_white.png" /></a>
+		<p>Smart Monthly Income Plan</p>
+	</div>
+	<!-- Content -->
+	<div class="content">
+		<!-- Input Start -->
+		<div class="blk" id="input_blk">
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Age Proof</p>
+				</div>
+				<div class="f_inp">
+					<select id='age_proof'>
+						<option value="Select" selected>Select</option>
+						<option value="PAN card (SAP)">PAN card (SAP)</option>
+						<option value="Passport (SAP)">Passport (SAP)</option>
+						<option value="Driving license (SAP)">Driving license (SAP)</option>
+						<option value="School certificate/College certificate (SAP)">School certificate/College certificate (SAP)</option>
+						<option value="Employers Certificate / Certified Service extract (SAP)">Employers Certificate / Certified Service extract (SAP)</option>
+						<option value="Municipal Birth certificate (SAP)">Municipal Birth certificate (SAP)</option>
+						<option value="Life Insurance Policy with Code (SAP)">Life Insurance Policy with Code (SAP)</option>
+						<option value="ITR with Pan number (SAP)">ITR with Pan number (SAP)</option>
+						<option value="Birth Certificate from hospital (SAP)">Birth Certificate from hospital (SAP)</option>
+						<option value="Birth certificate by Panchayat (SAP)">Birth certificate by Panchayat (SAP)</option>
+						<option value="Defence ID (SAP)">Defence ID (SAP)</option>
+						<option value="PAN Allotment Letter (SAP)">PAN Allotment Letter (SAP)</option>
+						<option value="Employment Exchange card (SAP)">Employment Exchange card (SAP)</option>
+						<option value="Domicile Certificate (SAP)">Domicile Certificate (SAP)</option>
+						<option value="Baptism certificate issued by Roman Catholic Church (SAP)">Baptism certificate issued by Roman Catholic Church (SAP)</option>
+						<option value="Defence Health Card (SAP)">Defence Health Card (SAP)</option>
+						<option value="PIO Card (SAP)">PIO Card (SAP)</option>
+						<option value="VISA (SAP)">VISA (SAP)</option>
+						<option value="Marriage certificate issued by Roman Catholic Church (SAP)">Marriage certificate issued by Roman Catholic Church (SAP)</option>
+						<option value="Certified extract from Bank Records (SAP)">Certified extract from Bank Records (SAP)</option>
+						<option value="ESI card (NSAP)">ESI card (NSAP)</option>
+						<option value="Life Insurance Policy with Age admitted (NSAP)">Life Insurance Policy with Age admitted (NSAP)</option>
+						<option value="Ration Card (NSAP)">Ration Card (NSAP)</option>
+						<option value="State Govt Insurance Policy (SAP)">State Govt Insurance Policy (SAP)</option>
+						<option value="Unique Identification card (UID)/ Aadhaar card with SAP (SAP)">Unique Identification card (UID)/ Aadhaar card with SAP (SAP)</option>
+						<option value="Voter ID (NSAP)">Voter ID (NSAP)</option>
+					</select>
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Designation</p>
+				</div>
+				<div class="f_inp">
+					<select id="designation">
+						<option value="Select" selected>Select</option>
+						<option value="None">None</option>
+						<option value="Chief officer in cargo vessel">Chief officer in cargo vessel</option>
+						<option value="Master in cargo vessel">Master in cargo vessel</option>
+						<option value="Captain in cargo vessel">Captain in cargo vessel</option>
+						<option value="Chief Engineer in cargo vessel">Chief Engineer in cargo vessel</option>
+						<option value="1st officer in cargo vessel">1st officer in cargo vessel</option>
+						<option value="1st engineer in cargo vessel">1st engineer in cargo vessel</option>
+						<option value="2nd officer in cargo vessel">2nd officer in cargo vessel</option>
+						<option value="2nd engineer in cargo vessel">2nd engineer in cargo vessel</option>
+						<option value="3rd officer in cargo vessel">3rd officer in cargo vessel</option>
+						<option value="3rd engineer in cargo vessel">3rd engineer in cargo vessel</option>
+						<option value="4th officer in cargo vessel">4th officer in cargo vessel</option>
+						<option value="4th engineer in cargo vessel">4th engineer in cargo vessel</option>
+						<option value="Seaman in cargo vessel">Seaman in cargo vessel</option>
+						<option value="Chefs in cargo vessel">Chefs in cargo vessel</option>
+						<option value="Master in Oil tanker">Master in Oil tanker</option>
+						<option value="Chief officer in Oil tanker">Chief officer in Oil tanker</option>
+						<option value="Captain in Oil tanker">Captain in Oil tanker</option>
+						<option value="Chief Engineer in Oil tanker">Chief Engineer in Oil tanker</option>
+						<option value="1st officer in Oil tanker">1st officer in Oil tanker</option>
+						<option value="1st engineer in Oil tanker">1st engineer in Oil tanker</option>
+						<option value="2nd officer in Oil tanker">2nd officer in Oil tanker</option>
+						<option value="2nd engineer in Oil tanker">2nd engineer in Oil tanker</option>
+						<option value="3rd officer in Oil tanker">3rd officer in Oil tanker</option>
+						<option value="3rd engineer in Oil tanker">3rd engineer in Oil tanker</option>
+						<option value="4th officer in Oil tanker">4th officer in Oil tanker</option>
+						<option value="4th engineer in Oil tanker">4th engineer in Oil tanker</option>
+						<option value="Seaman in Oil tanker">Seaman in Oil tanker</option>
+						<option value="Chefs in Oil tanker">Chefs in Oil tanker</option>
+						<option value="Captain Navy/Airport">Captain Navy/Airport</option>
+						<option value="Marine Biologist">Marine Biologist</option>
+						<option value="Merchant Navy/ Seaman">Merchant Navy/ Seaman</option>
+					</select>
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Age</p>
+				</div>
+				<div class="f_inp">
+					<input type='number' value='35' id='0_5_2' />
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Installment Premium (Rs.) Including Service Tax</p>
+				</div>
+				<div class="f_inp">
+					<input type='number' value='25000' id='0_4_5' />
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Mode</p>
+				</div>
+				<div class="f_inp">
+					<select id='0_6_2'>
+						<option value='Annual'  selected >Annual</option>
+						<option value='Monthly' >Monthly</option>
+					</select>
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Sex</p>
+				</div>
+				<div class="f_inp">
+					<select id='0_7_2' class="update_label" data-label="Male/Female">
+						<option value='M'  selected >M</option>
+						<option value='F' >F</option>
+					</select>
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Installment Premium Including Service Tax</p>
+				</div>
+				<div class="f_inp">
+					<select id='0_9_2'>
+						<option value='Yes'  selected >Yes</option>
+						<option value='No' >No</option>
+					</select>
+				</div>
+			</div>
+			<!--<div class="f_row">
+				<div class="f_lbl">
+					<p>Extra Mortality Rating</p>
+				</div>
+				<div class="f_inp">
+					<select id='0_12_2' data-fmt='0%'>
+						<option value='0'  selected >0</option>
+						<option value='0.25' >0.25</option>
+						<option value='0.5' >0.5</option>
+						<option value='0.75' >0.75</option>
+						<option value='1' >1</option>
+						<option value='1.25' >1.25</option>
+						<option value='1.5' >1.5</option>
+						<option value='1.75' >1.75</option>
+						<option value='2' >2</option>
+						<option value='2.25' >2.25</option>
+						<option value='2.5' >2.5</option>
+						<option value='2.75' >2.75</option>
+						<option value='3' >3</option>
+						<option value='3.25' >3.25</option>
+						<option value='3.5' >3.5</option>
+					</select>
+				</div>
+			</div>-->
+			<div class="f_row hidden">
+				<div class="f_lbl">
+					<p>Flat Extra</p>
+				</div>
+				<div class="f_inp">
+					<input type='number' value='0' id='0_13_2' />
+				</div>
+			</div>
+		</div>
+		<!-- Output Start -->
+		<div class="blk" id="output_blk">
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>Revised SA</p>
+				</div>
+				<div class="f_val">
+					<span id='0_9_5' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>220000</span>
+					<span id="0_7_6" class="errMsg">The Sum Assured is less than the minimum allowed. Thus input a higher premium.</span>
+				</div>
+			</div>
+			<div class="f_row">
+				<div class="f_lbl">
+					<p>New Revised Premium</p>
+				</div>
+				<div class="f_val">
+					<span id='0_10_5' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>23966.25</span>
+				</div>
+			</div>
+		</div>
+		<!-- First Year Modal Prem Calcs -->
+		<div class="table">
+			<h3>First Year Modal Prem Calcs</h3>
+			<div class="tbl_cont">
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Modal Premium</p>
+					</div>
+					<div class="f_val">
+						<span id='0_24_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>23100</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Service Tax</p>
+					</div>
+					<div class="f_val">
+						<span id='0_25_2' data-fmt='_(* #,##0.000_);_(* \(#,##0.000\);_(* &quot;-&quot;??_);_(@_)'>866.25</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Total Modal Premium</p>
+					</div>
+					<div class="f_val">
+						<span id='0_26_2' data-fmt='_(* #,##0.000_);_(* \(#,##0.000\);_(* &quot;-&quot;??_);_(@_)'>23966.25</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Annualized Premium excluding Service Tax</p>
+					</div>
+					<div class="f_val">
+						<span id='0_27_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>23100</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Subsequent Year Modal Prem Calcs -->
+		<div class="table">
+			<h3>Subsequent Year Modal Prem Calcs</h3>
+			<div class="tbl_cont">
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Modal Premium</p>
+					</div>
+					<div class="f_val">
+						<span id='0_31_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>23100</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Service Tax</p>
+					</div>
+					<div class="f_val">
+						<span id='0_32_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>433.13</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Total Modal Premium</p>
+					</div>
+					<div class="f_val">
+						<span id='0_33_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>23533.13</span>
+					</div>
+				</div>
+				<div class="f_row">
+					<div class="f_lbl">
+						<p>Annualized Premium excluding Service Tax</p>
+					</div>
+					<div class="f_val">
+						<span id='0_34_2' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>23100</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Back Button
+		<div class="btn_row">
+			<button onclick="displayInput();">Back</button>
+		</div> -->
+	</div>
+	<!-- Footer -->
+	<div id="footer">
+		<p onclick="validate()">Submit</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		init();
+	});
+	$(window).load(function() {
+		bodyshow();
+	});
+</script>

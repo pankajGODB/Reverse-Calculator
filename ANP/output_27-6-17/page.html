@@ -1,0 +1,316 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Xcelerator</title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <script src="jquery-2.1.1.min.js"></script>
+        <script src="data.js" type="text/javascript"></script>
+		<style>
+            @font-face {font-family: 'if';src:url('if.woff?-a8wubt') format('woff');font-weight: normal;font-style: normal;}
+            body { font-size: 0.8em; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; margin-top: 0px; margin-left: 0px; margin-right: 0px; backgroud: #eef;}
+            .menu-header { width: 100%; background: #3b78e7; display: table; position: fixed; top: 0px; z-index: 1000;}
+            #left-container, #logo, #right-container {display: table-cell;}
+            #left-container, #right-container {width: 40px;}
+            .logo       { font-size: 20px; font-style: italic; font-weight: bold;  display: inline-block; text-align: center; color: #fff; padding: 10px;}
+            .nav-left   { width: 30px; border: 0px solid #fff; display: inline-block;}
+            .nav-right  { width: 30px; border: 0px solid #fff; display: inline-block;}
+
+            .inpDiv { font-size: 0.8em; padding-top: 70px;}
+            .outDiv { font-size: 0.8em; padding-top: 70px;}
+            .tblinp { width: 95%; border-collapse: collapse;}
+            .tblinp td { padding: 8px 8px 8px 3px; font-size: 0.8em; border-bottom: thin solid #aaa;}
+            .tblinp tr td:first-child { font-weight: bold; border-bottom: 0px;}
+			.tblinp td span { width: 100%; display: inline-block;}
+            .tblout { line-height: 1.2em;}
+            .tblout td { padding: 3px 8px 3px 3px; font-size: 0.8em;}
+
+			.trow {display: table-row;}
+            .outcell {width: 95%; display: inline-block;}
+
+            .align0, .align1 { text-align: left; }   /* general, left */
+            .align2 { text-align: center; }         /* center */
+            .align3 { text-align: right; }          /* right */
+            .align4, .align5, .align6 { text-align: justify; }  /* justify */
+			.fbold { font-weight: 700;}
+			.fitalic {font-style: italic;}
+			.funderline {text-decoration: underline;}
+
+            .valign0 { vertical-align: text-top; }   /* top */
+            .valign1 { vertical-align: middle; }     /* center */
+            .valign2, .valign3 { vertical-align: text-bottom; }/* bottom justify */
+
+            .gicon {font-family: 'if'; -webkit-font-smoothing: antialiased; padding: 8px 6px 0px 3px; color: #eef;}
+            .gicon-prev:before		{ content: "\e638"; font-size: 1.4em;}
+            .gicon-next:before		{ content: "\e639"; font-size: 1.4em;}
+
+            input[type="text"], input[type="date"]              { width: 95%; border: 0px;  margin: 2px; padding: 3px;}
+            input[type="text"]:focus, input[type="date"]:focus  { border: 1px solid #88f; margin: 0px; padding: 3px;}
+			input[type="radio"]  { display: block;}
+
+
+            .datepicker-container { position: absolute; z-index: 201312; float: left; font-family: arial, helvetica, sans-serif; font-size: 12px; line-height: 30px; }
+            .datepicker-arrow, .datepicker-arrow:after { display: block; width: 0; height: 0; border: 5px solid transparent; }
+            .datepicker-arrow { position: relative; margin: 0 10px; border-bottom-color: #9cf; }
+            .datepicker-arrow:after { position: absolute; top: -4px; left: -5px; content: " "; border-bottom-color: #fff;}
+            .datepicker-content { width: 210px; -webkit-box-sizing: content-box; box-sizing: content-box; border: 1px solid #ccc; border-top-color: #9cf; -webkit-box-shadow: 0 0 3px #ccc; box-shadow: 0 0 3px #ccc;  padding-left: 10px; background-color:grey;}
+            .datepicker-prev, .datepicker-next { font-size: 18px; }
+            .datepicker-content ul:before,.datepicker-content ul:after {display: table;content: "";}
+            .datepicker-content ul:after {clear: both;}
+            .datepicker-content ul {width: 102%;padding: 0;margin: 0; *zoom: 1;}
+            .datepicker-content li {float: left;width: 30px;height: 30px;padding: 0;margin: 0;text-align: center;list-style: none;cursor: pointer;background-color: #fff;}
+            .datepicker-content .col-1 {width: 30px;}
+            .datepicker-content .col-2 {width: 60px;}
+            .datepicker-content .col-3 {width: 90px;}
+            .datepicker-content .col-4 {width: 120px;}
+            .datepicker-content .col-5 {width: 150px;}
+            .datepicker-content .col-6 {width: 180px;}
+            .datepicker-content .col-7 {width: 210px;}
+            .datepicker-content li:hover {background-color: #48f; color: #fff;}
+            .datepicker-content .selected,.datepicker-content .selected:hover {color: #f61;}
+            .datepicker-content .disabled,.datepicker-content .disabled:hover {color: #ccc;}
+            .datepicker-years li,.datepicker-months li {width: 52.5px;height: 52.5px;line-height: 52.5px;}
+            .datepicker-week li,.datepicker-week li:hover {cursor: default;background-color: #fff; color: #000;}
+
+		</style>
+    </head>
+<body>
+    <div class="menu-header">
+        <div id="left-container"><span class="gicon gicon-prev nav-left" id="nav-left"></span></div>
+        <div class="logo" id="logo">Xcelerator</div>
+        <div id="right-container"><span class="gicon gicon-next nav-right" id="nav-right"></span></div>
+    </div>
+    <div class="inpDiv" id="inpDiv">
+        <table class='tblinp'>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align0 valign1 fbold' style='font-size: 11pt;'>Enter the details in Cells coloured Green</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align1 valign1 fbold' style='font-size: 11pt;'>Output is in cells coloured Pink</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='3'><span class='align1 valign1 fbold' style='font-size: 11pt;'></span></td>
+    <td colspan='4'><span id='0_2_4' class='align2 valign1 outcell' style='font-size: 10pt;' >29799915</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='3'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Enter desired plan details</span></td>
+    <td colspan='4'><span class='align2 valign2 fbold' style='font-size: 10pt;'>Premium Input for Reverse Calculator</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Sum Assured</span></td>
+    <td colspan='2'><span id='0_4_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>29799915</span></td>
+    <td colspan='1'><span id='0_4_4' class='align0 valign2 outcell' style='font-size: 10pt;' >Orig. Installment Premium (Rs.) EXCLUDING Service Tax for Year 1: </span></td>
+    <td colspan='2'><input type='text' value='350000' id='0_4_5' class='align3 valign2' style='font-size: 10pt;'></td>
+    <td colspan='1'><input type='text' value='Orig. Installment Premium (Rs.) ' id='0_4_10' class='align1 valign1' style='font-size: 10pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Age Last Birthday as on Date of Commencement</span></td>
+    <td colspan='5'><input type='text' value='22' id='0_5_2' class='align3 valign1' style='font-size: 10pt;'></td>
+    <td colspan='1'><input type='text' value='INCLUDING Service Tax ' id='0_5_10' class='align1 valign1' style='font-size: 10pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Mode</span></td>
+    <td colspan='2'><select id='0_6_2' class='align3 valign1' style='font-size: 10pt;' ><option value='Annual' >Annual</option><option value='Monthly'  selected >Monthly</option></select></td>
+    <td colspan='3'><span class='align2 valign1 fbold' style='font-size: 11pt;'>Output of reverse calculator</span></td>
+    <td colspan='1'><input type='text' value='EXCLUDING Service Tax ' id='0_6_10' class='align1 valign1' style='font-size: 10pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Sex</span></td>
+    <td colspan='2'><select id='0_7_2' class='align3 valign1' style='font-size: 10pt;' ><option value='M'  selected >M</option><option value='F' >F</option></select></td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 10pt;'>SA Output for Reverse Calculator</span></td>
+    <td colspan='1'><span id='0_7_5' class='align3 valign2 fbold outcell' style='font-size: 11pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>29799915</span></td>
+    <td colspan='1'><span id='0_7_6' class='align2 valign1 outcell' style='font-size: 10pt;' ></span></td>
+    <td colspan='1'><input type='text' value='for Year 1: ' id='0_7_10' class='align1 valign1' style='font-size: 10pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Staff Case</span></td>
+    <td colspan='6'><select id='0_8_2' class='align3 valign1' style='font-size: 10pt;' ><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Online Case</span></td>
+    <td colspan='1'><select id='0_9_2' class='align3 valign1' style='font-size: 10pt;' ><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+    <td colspan='5'><span id='0_9_3' class='align1 valign1 fbold outcell' style='font-size: 10pt;' ></span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>PPT</span></td>
+    <td colspan='6'><select id='0_10_2' class='align3 valign1' style='font-size: 10pt;' ><option value='7'  selected >7</option><option value='10' >10</option></select></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>PT</span></td>
+    <td colspan='2'><span id='0_11_2' class='align3 valign1 outcell' style='font-size: 10pt;' >15</span></td>
+    <td colspan='4'><span class='align1 valign1 fbold funderline' style='font-size: 8pt;'>Note:</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Orig. Installment Premium &quot;Including&quot; Service Tax ( Cell F4)</span></td>
+    <td colspan='2'><select id='0_12_2' class='align3 valign1' style='font-size: 10pt;' ><option value='Yes' >Yes</option><option value='No'  selected >No</option></select></td>
+    <td colspan='4'><span class='align1 valign1 fbold' style='font-size: 12pt;'>Reverse Calculator will not work for Staff Cases</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='3'>&nbsp;</td>
+    <td colspan='4'><span class='align1 valign1 fbold' style='font-size: 12pt;'>If the Service Tax depicted here is different from the actual, get the Reverse Calculator updated from Actuarial Team.</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Underwriting Extras</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Extra Mortality Rating</span></td>
+    <td colspan='6'><select id='0_15_2' class='align3 valign1' style='font-size: 10pt;' data-fmt='0%'><option value='0%' >0%</option><option value='25%' >25%</option><option value='50%' >50%</option><option value='75%' >75%</option><option value='100%' >100%</option><option value='125%' >125%</option><option value='150%' >150%</option><option value='175%' >175%</option><option value='225%' >225%</option><option value='275%' >275%</option><option value='350%' >350%</option></select></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>Flat Extra</span></td>
+    <td colspan='6'><input type='text' value='0' id='0_16_2' class='align3 valign1' style='font-size: 10pt;'></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1 fbold' style='font-size: 10pt;'>MMR</span></td>
+    <td colspan='1'><input type='text' value='0' id='0_17_2' class='align3 valign1' style='font-size: 10pt;'></td>
+    <td colspan='5'><span class='align1 valign1 fbold' style='font-size: 10pt;'>As per our understanding from underwriting team, MMR is no longer used and hence should always assume the value 0 here.</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1' style='font-size: 10pt;'>Check for Premium basis Premium Calculator</span></td>
+    <td colspan='6'><span id='0_19_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_(@_)'>350000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Year </span></td>
+    <td colspan='6'><span class='align0 valign1 fbold' style='font-size: 10pt;'>Service Tax and applicable Cess</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1' style='font-size: 10pt;'>Year 1</span></td>
+    <td colspan='6'><input type='text' value='4.500%' id='0_22_2' class='align2 valign1' style='font-size: 10pt;' data-fmt='0.000%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align2 valign1' style='font-size: 10pt;'>Other Years</span></td>
+    <td colspan='6'><input type='text' value='2.250%' id='0_23_2' class='align2 valign1' style='font-size: 10pt;' data-fmt='0.000%' ></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span id='0_24_1' class='align2 valign1 fbold outcell' style='font-size: 10pt;' data-fmt='0%'>First Year Modal Prem Calcs</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1' style='font-size: 10pt;'></span></td>
+    <td colspan='1'><span class='align2 valign1 funderline' style='font-size: 10pt;'>Ingenium</span></td>
+    <td colspan='5'><span class='align2 valign1 funderline' style='font-size: 10pt;'>Oasis</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_26_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Modal Premium (Basic Prem + Extra Prem, incl. Disc.)</span></td>
+    <td colspan='1'><span id='0_26_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>350000</span></td>
+    <td colspan='5'><span id='0_26_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>350000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_27_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Service Tax and applicable Cess</span></td>
+    <td colspan='1'><span id='0_27_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>15750</span></td>
+    <td colspan='5'><span id='0_27_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>15750</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_28_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Total Modal Premium</span></td>
+    <td colspan='1'><span id='0_28_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.000_);_(* \(#,##0.000\);_(* &quot;-&quot;??_);_(@_)'>365750</span></td>
+    <td colspan='5'><span id='0_28_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>365750</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_29_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Annualized Premium excluding Service Tax</span></td>
+    <td colspan='1'><span id='0_29_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>4200000</span></td>
+    <td colspan='5'><span id='0_29_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>4200000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='7'><span class='align2 valign1 fbold' style='font-size: 10pt;'>Subsequent Year Modal Prem Calcs</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align1 valign1' style='font-size: 10pt;'></span></td>
+    <td colspan='1'><span class='align2 valign1 funderline' style='font-size: 10pt;'>Ingenium</span></td>
+    <td colspan='5'><span class='align2 valign1 funderline' style='font-size: 10pt;'>Oasis</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_33_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Modal Premium (Basic Prem + Extra Prem, incl. Disc.)</span></td>
+    <td colspan='1'><span id='0_33_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>350000</span></td>
+    <td colspan='5'><span id='0_33_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>350000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_34_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Service Tax and applicable Cess</span></td>
+    <td colspan='1'><span id='0_34_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>7875</span></td>
+    <td colspan='5'><span id='0_34_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>7875</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_35_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Total Modal Premium</span></td>
+    <td colspan='1'><span id='0_35_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>357875</span></td>
+    <td colspan='5'><span id='0_35_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>357875</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span id='0_36_1' class='align1 valign1 outcell' style='font-size: 10pt;' data-fmt='0%'>Annualized Premium excluding Service Tax</span></td>
+    <td colspan='1'><span id='0_36_2' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>4200000</span></td>
+    <td colspan='5'><span id='0_36_3' class='align3 valign1 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>4200000</span></td>
+</tr>
+<tr><td>&nbsp;</td>
+    <td colspan='1'><span class='align0 valign2' style='font-size: 10pt;'></span></td>
+    <td colspan='1'><span id='0_38_2' class='align3 valign2 outcell' style='font-size: 10pt;' data-fmt='_(* #,##0.00_);_(* \(#,##0.00\);_(* &quot;-&quot;??_);_(@_)'>0</span></td>
+    <td colspan='5'><span class='align1 valign1 fbold' style='font-size: 10pt;'>If Cell D33 is greater than 1 wrt rounding of values, please connect with the Pricing Team</span></td>
+</tr>
+</table>
+    </div>
+	
+	<div class="outDiv" id="outDiv">
+        {outputTable}
+	</div>
+
+
+
+</body>
+</html>
+
+<script type='text/javascript'>
+    var isheet=0, osheet=0;
+
+    (function(){
+        $('#nav-left').hide();
+        $('#outDiv').hide();
+        if( isheet == osheet ){
+            $('#nav-right').hide();
+        }
+
+        $('*:input[type!=hidden]:first').focus();
+
+        $('#nav-right').click(function(e){
+            e.preventDefault();
+            $('#nav-left').show();
+            $('#nav-right').hide();
+            $('#inpDiv').hide(300);
+            $('#outDiv').show(300);
+            window.scrollTo(0,0);
+        });
+        $('#nav-left').click(function(e){
+            e.preventDefault();
+            $('#nav-left').hide();
+            $('#nav-right').show();
+            $('#inpDiv').show(300);
+            $('#outDiv').hide(300);
+            window.scrollTo(0,0);
+        });
+        $('[id^=dt-]').datepicker();
+        $('[id^=dt-]').change(function(e){
+            e.preventDefault();
+            var parts = this.id.split('-');
+            if( parts.length!=4)return;
+            var id = parts[1]+'_'+parts[2]+'_'+parts[3];
+            $('#'+id).val((new Date(this.value)).getTime());
+            data[id] = new Date(this.value);
+            xl2g.evalAllTargets();
+			//xl2g.onInputChange(document.getElementById(id));
+        });
+        $('[id^=chk-]').change(function(e){
+            e.preventDefault();
+            var parts = this.id.split('-');
+            if( parts.length!=3)return;
+			var value = this.checked ? this.value : '';
+            //console.log(parts);
+            //console.log(value);
+			data[parts[2]] =value;
+			var chks = document.getElementsByName(this.name);
+			for( var i=0; i<chks.length; i++){
+				if( chks[i].type=="checkbox" && chks[i].id != this.id)chks[i].checked = false;
+			}
+            xl2g.evalAllTargets();
+			
+        });
+
+        createXl2g();
+		
+		xl2g.afterRadioChange = function(elem){
+			
+		}
+    })();
+</script>
